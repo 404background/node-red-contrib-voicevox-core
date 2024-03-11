@@ -1,3 +1,11 @@
+# for VOICEVOX CORE
+
+voicevox
+voice/*.wav
+onnxruntime.dll
+
+# for Node
+
 # Logs
 logs
 *.log
