@@ -1,10 +1,11 @@
 # for VOICEVOX CORE
 
-voicevox
+voicevox_core
 voice/*.wav
 onnxruntime.dll
+pyenv
 
-# for Node
+# for Node(ignore Node)
 
 # Logs
 logs

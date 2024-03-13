@@ -1,0 +1,35 @@
+{
+  "name": "@background404/node-red-contrib-voicevox-core",
+  "version": "0.0.1",
+  "description": "Node for VOICEVOX CORE",
+  "main": "voicevox.js",
+  "scripts": {
+    "preinstall": "python ./setup.py",
+    "test": "mocha test/**/*_spec.js",
+    "setup": "python setup.py",
+    "voicevox": "python voicevox.py 日本語の音声を出力します。"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "node-red": {
+    "version": ">=1.3.7",
+    "nodes": {
+      "voicevox": "voicevox.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/404background/node-red-contrib-voicevox-core.git"
+  },
+  "keywords": [
+    "node-red",
+    "voicevox"
+  ],
+  "author": "background404",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/404background/node-red-contrib-voicevox-core/issues"
+  },
+  "homepage": "https://github.com/404background/node-red-contrib-voicevox-core#readme"
+}

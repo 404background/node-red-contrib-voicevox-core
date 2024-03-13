@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    RED.nodes.registerType('voicevox',{
+        category: 'voicevox',
+        color: '#a5d4ad',
+        defaults: {
+            name: {value: ""},
+            id: {value: 2}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "comment.svg",
+        label: function() {
+            return this.name||"voicevox";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="voicevox">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+        <label for="node-input-id"><i class="fa fa-tag"></i> Id</label>
+        <input type="number" id="node-input-id" placeholder="id">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="voicevox">
+    Node for VOICEVOX.
+    If you want to use this node, you need to build VOICEVOX_CORE environment.
+    
+    See also:
+    https://github.com/404background/node-red-contrib-voicevox-core#readme
+</script>
