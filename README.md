@@ -27,7 +27,7 @@ voicevox_coreは0.15.0がインストールされます。
 ### サンプルフロー
 
 sampleフォルダに入っています。  
-![sample-flow](./sample/sample-flow.jpg)  
+![sample-flow](./examples/sample-flow.jpg)  
 
 ## Node-RED関連
 
