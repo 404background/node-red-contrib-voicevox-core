@@ -4,6 +4,7 @@ voicevox_core
 voice/*.wav
 onnxruntime.dll
 pyenv
+path.json
 
 # for Node(ignore Node)
 
