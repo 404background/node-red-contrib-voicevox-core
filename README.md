@@ -11,9 +11,7 @@
 
 > [!CAUTION]
 > **現状ではWindowsにしか対応していません。**  
-> また**Pythonの環境が必要**で、パッケージがインストールされます。  
-> 仮想環境にインストールできるようにする予定です。  
-> >インストールされるもの：requests, voicevox_core  
+> また**Pythonの環境が必要**で、仮想環境にパッケージがインストールされます。  
 
 ## 動作確認環境
 
@@ -22,7 +20,7 @@
 - Node.js v20.10.0
 - npm 9.1.3
 
-voicevox_coreは0.15.0がインストールされます。  
+voicevox_coreは0.15.3がインストールされます。  
 
 ### サンプルフロー
 
@@ -48,9 +46,10 @@ sampleフォルダに入っています。
 
 ## Python関連
 
-### ファイル構成
+Node-REDのノードとしてインストールできるだけでなく、Pythonで実行するための環境構築を行うことができます。  
 
 - setup.py: 環境構築
+- downloader.py: ダウンローダの実行
 - voicevox.py: 音声ファイルを出力（第一引数：文字列、第二引数：話者のID）
 - id_list.py: 話者のリストを表示
 
@@ -72,10 +71,6 @@ voiceフォルダに音声ファイルが保存されます。
   - read fileノードで音声ファイルを開いてバイナリバッファで送ることもできますが、このノードでバイナリバッファを送るほうが使いやすいかも？
   - バイナリバッファで送るとファイルに保存しなくてもよくなりますが、出力に時間がかかります。
   - 選択できるようにしようかなと思っています。
-- Pythonの仮想環境へのインストール
-  - 仮想環境を作成して、そのpipにライブラリをインストールして実行するとエラーが出ます。
-  - _rust.pydのファイル参照先が違うのかも？
-  - コアライブラリのビルドを試そうと思っています。
 
 ## その他情報
 
@@ -85,3 +80,5 @@ voiceフォルダに音声ファイルが保存されます。
 <https://404background.com/program/voicevox-core/>  
 ▼Node-REDとVOICEVOX COREで音声合成（Python）  
 <https://404background.com/program/node-red-voicevox/>  
+▼python-venvノードと同じ仕組みで、インストール時にPythonの仮想環境を構築するようにしました。  
+<https://404background.com/program/node-create-python-venv/>  

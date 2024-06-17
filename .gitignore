@@ -4,6 +4,9 @@ voicevox_core
 voice/*.wav
 onnxruntime.dll
 pyenv
+id_list.json
+path.json
+package-lock.json
 
 # for Node(ignore Node)
 
