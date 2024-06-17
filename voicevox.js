@@ -11,16 +11,11 @@ module.exports = function(RED) {
         const pythonPath = JSON.parse(json).NODE_PYENV_PYTHON
 
         node.on('input', function(msg) {
-            const command = pythonPath + ' ' + voicevoxPath + ' ' + msg.payload + ' ' + Number(config.id)
-            const path_voice = __dirname + '/voice/' + msg.payload + '.wav'
+            let command = pythonPath + ' ' + voicevoxPath + ' ' + msg.payload + ' ' + Number(config.voiceID)
+            let voicePath = __dirname + '/voice/' + msg.payload + '.wav'
 
-            exec(command, (err, stdout, stderr) => {
-                if (err) {
-                    console.log(err)
-                }
-                console.log(stdout)
-            })
-            msg.payload = path_voice
+            exec(command)
+            msg.payload = voicePath
             node.send(msg)
         })
     }

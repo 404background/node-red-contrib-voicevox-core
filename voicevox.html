@@ -1,16 +1,16 @@
 <script type="text/javascript">
     RED.nodes.registerType('voicevox',{
-        category: 'voicevox',
+        category: 'python',
         color: '#a5d4ad',
         defaults: {
             name: {value: ""},
-            id: {value: 2}
+            voiceID: {value: 2}
         },
         inputs: 1,
         outputs: 1,
         icon: "comment.svg",
         label: function() {
-            return this.name||"voicevox"
+            return this.name||"voicevox";
         }
     })
 </script>
@@ -19,8 +19,8 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-        <label for="node-input-id"><i class="fa fa-tag"></i> ID</label>
-        <input type="text" id="node-input-id">
+        <label for="node-input-voiceID"><i class="fa fa-tag"></i> ID</label>
+        <input type="text" id="node-input-voiceID">
     </div>
 </script>
 
