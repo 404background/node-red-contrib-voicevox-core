@@ -1,10 +1,11 @@
 <script type="text/javascript">
     RED.nodes.registerType('voicevox',{
-        category: 'voicevox',
+        category: 'python',
         color: '#a5d4ad',
         defaults: {
             name: {value: ""},
-            id: {value: 2}
+            voiceID: {value: 2},
+            voiceFolder: {value: "", required: true}
         },
         inputs: 1,
         outputs: 1,
@@ -12,15 +13,178 @@
         label: function() {
             return this.name||"voicevox";
         }
-    });
+    })
 </script>
 
 <script type="text/html" data-template-name="voicevox">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-        <label for="node-input-id"><i class="fa fa-tag"></i> Id</label>
-        <input type="number" id="node-input-id" placeholder="id">
+        <input type="text" id="node-input-name" placeholder="Name"><br>
+        <label for="node-input-voiceFolder"><i class="fa fa-folder"></i> Folder Path</label>
+        <input type="text" id="node-input-voiceFolder"><br>
+        <label for="node-input-voiceID"><i class="fa fa-user"></i> ID</label>
+        <select id="node-input-voiceID">
+            <option value="0">0:四国めたん, あまあま</option>
+            <option value="1">1:ずんだもん, あまあま</option>
+            <option value="2">2:四国めたん, ノーマル</option>
+            <option value="3">3:ずんだもん, ノーマル</option>
+            <option value="4">4:四国めたん, セクシー</option>
+            <option value="5">5:ずんだもん, セクシー</option>
+            <option value="6">6:四国めたん, ツンツン</option>
+            <option value="7">7:ずんだもん, ツンツン</option>
+            <option value="8">8:春日部つむぎ, ノーマル</option>
+            <option value="9">9:波音リツ, ノーマル</option>
+            <option value="10">10:雨晴はう, ノーマル</option>
+            <option value="11">11:玄野武宏, ノーマル</option>
+            <option value="12">12:白上虎太郎, ふつう</option>
+            <option value="13">13:青山龍星, ノーマル</option>
+            <option value="14">14:冥鳴ひまり, ノーマル</option>
+            <option value="15">15:九州そら, あまあま</option>
+            <option value="16">16:九州そら, ノーマル</option>
+            <option value="17">17:九州そら, セクシー</option>
+            <option value="18">18:九州そら, ツンツン</option>
+            <option value="19">19:九州そら, ささやき</option>
+            <option value="20">20:もち子さん, ノーマル</option>
+            <option value="21">21:剣崎雌雄, ノーマル</option>
+            <option value="22">22:ずんだもん, ささやき</option>
+            <option value="23">23:WhiteCUL, ノーマル</option>
+            <option value="24">24:WhiteCUL, たのしい</option>
+            <option value="25">25:WhiteCUL, かなしい</option>
+            <option value="26">26:WhiteCUL, びえーん</option>
+            <option value="27">27:後鬼, 人間ver.</option>
+            <option value="28">28:後鬼, ぬいぐるみver.</option>
+            <option value="29">29:No.7, ノーマル</option>
+            <option value="30">30:No.7, アナウンス</option>
+            <option value="31">31:No.7, 読み聞かせ</option>
+            <option value="32">32:白上虎太郎, わーい</option>
+            <option value="33">33:白上虎太郎, びくびく</option>
+            <option value="34">34:白上虎太郎, おこ</option>
+            <option value="35">35:白上虎太郎, びえーん</option>
+            <option value="36">36:四国めたん, ささやき</option>
+            <option value="37">37:四国めたん, ヒソヒソ</option>
+            <option value="38">38:ずんだもん, ヒソヒソ</option>
+            <option value="39">39:玄野武宏, 喜び</option>
+            <option value="40">40:玄野武宏, ツンギレ</option>
+            <option value="41">41:玄野武宏, 悲しみ</option>
+            <option value="42">42:ちび式じい, ノーマル</option>
+            <option value="43">43:櫻歌ミコ, ノーマル</option>
+            <option value="44">44:櫻歌ミコ, 第二形態</option>
+            <option value="45">45:櫻歌ミコ, ロリ</option>
+            <option value="46">46:小夜&#x2F;SAYO, ノーマル</option>
+            <option value="47">47:ナースロボ＿タイプＴ, ノーマル</option>
+            <option value="48">48:ナースロボ＿タイプＴ, 楽々</option>
+            <option value="49">49:ナースロボ＿タイプＴ, 恐怖</option>
+            <option value="50">50:ナースロボ＿タイプＴ, 内緒話</option>
+            <option value="51">51:†聖騎士 紅桜†, ノーマル</option>
+            <option value="52">52:雀松朱司, ノーマル</option>
+            <option value="53">53:麒ヶ島宗麟, ノーマル</option>
+            <option value="54">54:春歌ナナ, ノーマル</option>
+            <option value="55">55:猫使アル, ノーマル</option>
+            <option value="56">56:猫使アル, おちつき</option>
+            <option value="57">57:猫使アル, うきうき</option>
+            <option value="58">58:猫使ビィ, ノーマル</option>
+            <option value="59">59:猫使ビィ, おちつき</option>
+            <option value="60">60:猫使ビィ, 人見知り</option>
+            <option value="61">61:中国うさぎ, ノーマル</option>
+            <option value="62">62:中国うさぎ, おどろき</option>
+            <option value="63">63:中国うさぎ, こわがり</option>
+            <option value="64">64:中国うさぎ, へろへろ</option>
+            <option value="65">65:波音リツ, クイーン</option>
+            <option value="66">66:もち子さん, セクシー／あん子</option>
+            <option value="67">67:栗田まろん, ノーマル</option>
+            <option value="68">68:あいえるたん, ノーマル</option>
+            <option value="69">69:満別花丸, ノーマル</option>
+            <option value="70">70:満別花丸, 元気</option>
+            <option value="71">71:満別花丸, ささやき</option>
+            <option value="72">72:満別花丸, ぶりっ子</option>
+            <option value="73">73:満別花丸, ボーイ</option>
+            <option value="74">74:琴詠ニア, ノーマル</option>
+            <option value="75">75:ずんだもん, ヘロヘロ</option>
+            <option value="76">76:ずんだもん, なみだめ</option>
+            <option value="77">77:もち子さん, 泣き</option>
+            <option value="78">78:もち子さん, 怒り</option>
+            <option value="79">79:もち子さん, 喜び</option>
+            <option value="80">80:もち子さん, のんびり</option>
+            <option value="81">81:青山龍星, 熱血</option>
+            <option value="82">82:青山龍星, 不機嫌</option>
+            <option value="83">83:青山龍星, 喜び</option>
+            <option value="84">84:青山龍星, しっとり</option>
+            <option value="85">85:青山龍星, かなしみ</option>
+            <option value="86">86:青山龍星, 囁き</option>
+            <option value="3000">3000:四国めたん, あまあま</option>
+            <option value="3001">3001:ずんだもん, あまあま</option>
+            <option value="3002">3002:四国めたん, ノーマル</option>
+            <option value="3003">3003:ずんだもん, ノーマル</option>
+            <option value="3004">3004:四国めたん, セクシー</option>
+            <option value="3005">3005:ずんだもん, セクシー</option>
+            <option value="3006">3006:四国めたん, ツンツン</option>
+            <option value="3007">3007:ずんだもん, ツンツン</option>
+            <option value="3008">3008:春日部つむぎ, ノーマル</option>
+            <option value="3009">3009:波音リツ, ノーマル</option>
+            <option value="3010">3010:雨晴はう, ノーマル</option>
+            <option value="3011">3011:玄野武宏, ノーマル</option>
+            <option value="3012">3012:白上虎太郎, ふつう</option>
+            <option value="3013">3013:青山龍星, ノーマル</option>
+            <option value="3014">3014:冥鳴ひまり, ノーマル</option>
+            <option value="3015">3015:九州そら, あまあま</option>
+            <option value="3016">3016:九州そら, ノーマル</option>
+            <option value="3017">3017:九州そら, セクシー</option>
+            <option value="3018">3018:九州そら, ツンツン</option>
+            <option value="3020">3020:もち子さん, ノーマル</option>
+            <option value="3021">3021:剣崎雌雄, ノーマル</option>
+            <option value="3023">3023:WhiteCUL, ノーマル</option>
+            <option value="3024">3024:WhiteCUL, たのしい</option>
+            <option value="3025">3025:WhiteCUL, かなしい</option>
+            <option value="3026">3026:WhiteCUL, びえーん</option>
+            <option value="3027">3027:後鬼, 人間ver.</option>
+            <option value="3028">3028:後鬼, ぬいぐるみver.</option>
+            <option value="3029">3029:No.7, ノーマル</option>
+            <option value="3030">3030:No.7, アナウンス</option>
+            <option value="3031">3031:No.7, 読み聞かせ</option>
+            <option value="3032">3032:白上虎太郎, わーい</option>
+            <option value="3033">3033:白上虎太郎, びくびく</option>
+            <option value="3034">3034:白上虎太郎, おこ</option>
+            <option value="3035">3035:白上虎太郎, びえーん</option>
+            <option value="3037">3037:四国めたん, ヒソヒソ</option>
+            <option value="3038">3038:ずんだもん, ヒソヒソ</option>
+            <option value="3039">3039:玄野武宏, 喜び</option>
+            <option value="3040">3040:玄野武宏, ツンギレ</option>
+            <option value="3041">3041:玄野武宏, 悲しみ</option>
+            <option value="3042">3042:ちび式じい, ノーマル</option>
+            <option value="3043">3043:櫻歌ミコ, ノーマル</option>
+            <option value="3044">3044:櫻歌ミコ, 第二形態</option>
+            <option value="3045">3045:櫻歌ミコ, ロリ</option>
+            <option value="3046">3046:小夜&#x2F;SAYO, ノーマル</option>
+            <option value="3047">3047:ナースロボ＿タイプＴ, ノーマル</option>
+            <option value="3048">3048:ナースロボ＿タイプＴ, 楽々</option>
+            <option value="3049">3049:ナースロボ＿タイプＴ, 恐怖</option>
+            <option value="3051">3051:†聖騎士 紅桜†, ノーマル</option>
+            <option value="3052">3052:雀松朱司, ノーマル</option>
+            <option value="3053">3053:麒ヶ島宗麟, ノーマル</option>
+            <option value="3054">3054:春歌ナナ, ノーマル</option>
+            <option value="3055">3055:猫使アル, ノーマル</option>
+            <option value="3056">3056:猫使アル, おちつき</option>
+            <option value="3057">3057:猫使アル, うきうき</option>
+            <option value="3058">3058:猫使ビィ, ノーマル</option>
+            <option value="3059">3059:猫使ビィ, おちつき</option>
+            <option value="3061">3061:中国うさぎ, ノーマル</option>
+            <option value="3062">3062:中国うさぎ, おどろき</option>
+            <option value="3063">3063:中国うさぎ, こわがり</option>
+            <option value="3064">3064:中国うさぎ, へろへろ</option>
+            <option value="3065">3065:波音リツ, クイーン</option>
+            <option value="3066">3066:もち子さん, セクシー／あん子</option>
+            <option value="3067">3067:栗田まろん, ノーマル</option>
+            <option value="3068">3068:あいえるたん, ノーマル</option>
+            <option value="3069">3069:満別花丸, ノーマル</option>
+            <option value="3070">3070:満別花丸, 元気</option>
+            <option value="3071">3071:満別花丸, ささやき</option>
+            <option value="3072">3072:満別花丸, ぶりっ子</option>
+            <option value="3073">3073:満別花丸, ボーイ</option>
+            <option value="3074">3074:琴詠ニア, ノーマル</option>
+            <option value="3075">3075:ずんだもん, ヘロヘロ</option>
+            <option value="3076">3076:ずんだもん, なみだめ</option>
+            <option value="3077">3077:もち子さん, 泣き</option>
+        </select>
     </div>
 </script>
 

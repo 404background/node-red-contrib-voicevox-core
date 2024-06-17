@@ -7,7 +7,7 @@
     "preinstall": "python ./setup.py",
     "test": "mocha test/**/*_spec.js",
     "setup": "python setup.py",
-    "voicevox": "python voicevox.py 日本語の音声を出力します。"
+    "voicevox": "python voicevox.py 日本語の音声を出力します。 2"
   },
   "engines": {
     "node": ">=14.0.0"

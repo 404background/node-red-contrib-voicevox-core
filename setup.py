@@ -1,49 +1,37 @@
 import os
 import subprocess
-import shutil
-import requests
 import json
 
-absdir = os.path.dirname(os.path.abspath(__file__))
-
+absDir = os.path.dirname(os.path.abspath(__file__))
 subprocess.run(['python', '-m', 'venv', 'pyenv'])
 
 if os.name == 'nt':
-    subprocess.run([f'{absdir}/pyenv/Scripts/python.exe', '-m', 'pip', 'install', '--upgrade', 'pip'])
+    subprocess.run([f'{absDir}/pyenv/Scripts/python.exe', '-m', 'pip', 'install', '--upgrade', 'pip'])
     path = {
-        'NODE_PYENV_PYTHON': f'{absdir}/pyenv/Scripts/python.exe',
-        'NODE_PYENV_PIP': f'{absdir}/pyenv/Scripts/pip.exe'
+        'NODE_PYENV_PYTHON': f'{absDir}/pyenv/Scripts/python.exe',
+        'NODE_PYENV_PIP': f'{absDir}/pyenv/Scripts/pip.exe'
     }
 else:
-    subprocess.run([f'{absdir}/pyenv/bin/python', '-m', 'pip', 'install', '--upgrade', 'pip'])
+    subprocess.run([f'{absDir}/pyenv/bin/python', '-m', 'pip', 'install', '--upgrade', 'pip'])
     path = {
-        'NODE_PYENV_PYTHON': f'{absdir}/pyenv/bin/python',
-        'NODE_PYENV_PIP': f'{absdir}/pyenv/bin/pip'
+        'NODE_PYENV_PYTHON': f'{absDir}/pyenv/bin/python',
+        'NODE_PYENV_PIP': f'{absDir}/pyenv/bin/pip'
     }
 
-with open(f'{absdir}/path.json', 'w') as f:
+with open(f'{absDir}/path.json', 'w') as f:
     json.dump(path, f, indent=2)
 
+package = ''
 
-
-#pip install
-
-## for Windows
+# package of Voicevox Core
+# https://github.com/VOICEVOX/voicevox_core/releases
 if os.name == 'nt':
-    package = 'https://github.com/VOICEVOX/voicevox_core/releases/download/0.15.0/voicevox_core-0.15.0+cpu-cp38-abi3-win_amd64.whl'
-    subprocess.run([f'{absdir}/pyenv/Scripts/pip.exe', 'install', 'requests'])
-    subprocess.run([f'{absdir}/pyenv/Scripts/pip.exe', 'install', f'{package}'])
+    package = 'https://github.com/VOICEVOX/voicevox_core/releases/download/0.15.3/voicevox_core-0.15.3+cpu-cp38-abi3-win_amd64.whl'
 
-
-# Execute downloader
-
-## for Windows
-if os.name == 'nt':
-    url='https://github.com/VOICEVOX/voicevox_core/releases/latest/download/download-windows-x64.exe'
-    filename=f'{absdir}/download.exe'
-    urlData = requests.get(url).content
-    with open(filename ,mode='wb') as f:
-        f.write(urlData)
-    subprocess.run(filename)
-    os.remove(filename)
-    new_path = shutil.copy(f'{absdir}/voicevox_core/onnxruntime.dll', f'{absdir}/pyenv/Lib/site-packages/voicevox_core/onnxruntime.dll')
+if package == '':
+    print('Not supported for your OS')
+else:
+    subprocess.run([path['NODE_PYENV_PIP'], 'install', 'requests'])
+    subprocess.run([path['NODE_PYENV_PIP'], 'install', package])
+    subprocess.run([path['NODE_PYENV_PYTHON'], 'downloader.py'])
+    subprocess.run([path['NODE_PYENV_PYTHON'], 'id_list.py'])
