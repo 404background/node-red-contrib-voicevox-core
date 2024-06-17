@@ -10,10 +10,21 @@ module.exports = function(RED) {
         const voicevoxPath = path.join(__dirname, 'voicevox.py')
         const pythonPath = JSON.parse(json).NODE_PYENV_PYTHON
 
-        node.on('input', function(msg) {
-            let command = pythonPath + ' ' + voicevoxPath + ' ' + msg.payload + ' ' + Number(config.voiceID)
-            let voicePath = __dirname + '/voice/' + msg.payload + '_' + Number(config.voiceID) + '.wav'
+        voiceID = Number(config.voiceID)
+        voiceFolder = config.voiceFolder
 
+        node.on('input', function(msg) {
+            if(typeof msg.voiceID !== 'undefined' && msg.voiceID !== '') {
+                voiceID = msg.voiceID
+            }
+            if(typeof msg.voiceFolder !== 'undefined' && msg.voiceFolder !== '') {
+                voiceFolder = msg.voiceFolder
+            }
+
+            fileName = msg.payload + '_' + voiceID + '.wav'
+            voicePath = path.join(voiceFolder, fileName)
+
+            let command = pythonPath + ' ' + voicevoxPath + ' ' + msg.payload + ' ' + voiceID+ ' ' + voicePath
             exec(command)
             msg.payload = voicePath
             node.send(msg)

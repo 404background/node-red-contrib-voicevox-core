@@ -4,7 +4,8 @@
         color: '#a5d4ad',
         defaults: {
             name: {value: ""},
-            voiceID: {value: 2}
+            voiceID: {value: 2},
+            voiceFolder: {value: "", required: true}
         },
         inputs: 1,
         outputs: 1,
@@ -18,8 +19,10 @@
 <script type="text/html" data-template-name="voicevox">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-        <label for="node-input-voiceID"><i class="fa fa-tag"></i> ID</label>
+        <input type="text" id="node-input-name" placeholder="Name"><br>
+        <label for="node-input-voiceFolder"><i class="fa fa-folder"></i> Folder Path</label>
+        <input type="text" id="node-input-voiceFolder"><br>
+        <label for="node-input-voiceID"><i class="fa fa-user"></i> ID</label>
         <select id="node-input-voiceID">
             <option value="0">0:四国めたん, あまあま</option>
             <option value="1">1:ずんだもん, あまあま</option>
