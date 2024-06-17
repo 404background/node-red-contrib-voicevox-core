@@ -10,8 +10,9 @@ if len(sys.argv) == 3:
     speaker_id = int(sys.argv[2])
 
 text = sys.argv[1]
+
 if not core.is_model_loaded(speaker_id):
     core.load_model(speaker_id)
 wave_bytes = core.tts(text, speaker_id)
-with open(f'{absDir}/voice/' + text + '.wav', 'wb') as f:
+with open(f'{absDir}/voice/{text}_{speaker_id}.wav', 'wb') as f:
     f.write(wave_bytes)

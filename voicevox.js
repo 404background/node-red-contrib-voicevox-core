@@ -12,7 +12,7 @@ module.exports = function(RED) {
 
         node.on('input', function(msg) {
             let command = pythonPath + ' ' + voicevoxPath + ' ' + msg.payload + ' ' + Number(config.voiceID)
-            let voicePath = __dirname + '/voice/' + msg.payload + '.wav'
+            let voicePath = __dirname + '/voice/' + msg.payload + '_' + Number(config.voiceID) + '.wav'
 
             exec(command)
             msg.payload = voicePath
