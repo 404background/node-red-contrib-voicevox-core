@@ -7,7 +7,7 @@ jsonList = absdir+'/id_list.json'
 
 # for display METAS
 from pprint import pprint
-# pprint(METAS)
+pprint(METAS)
 
 id_list = {}
 options_list = []

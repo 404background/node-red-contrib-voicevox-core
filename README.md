@@ -27,7 +27,7 @@ voicevox_coreは0.15.3がインストールされます。
 [examples](./examples/)フォルダに入っています。  
 ![sample-flow.jpg](./examples/sample-flow.jpg)  
 
-音声ファイルを保存するフォルダを指定する必要があります。  
+音声ファイルの保存先フォルダを指定する必要があります。  
 話者のIDはプルダウンで選択できます。  
 ![edit.png](./examples/edit.png)  
 

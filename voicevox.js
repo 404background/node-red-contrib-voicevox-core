@@ -25,7 +25,10 @@ module.exports = function(RED) {
             voicePath = path.join(voiceFolder, fileName)
 
             let command = pythonPath + ' ' + voicevoxPath + ' ' + msg.payload + ' ' + voiceID+ ' ' + voicePath
-            exec(command)
+            exec(command, (err, stdout, stderr) => {
+                if (err) { console.log(err) }
+                console.log(stdout)
+            })
             msg.payload = voicePath
             node.send(msg)
         })
