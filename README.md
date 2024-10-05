@@ -1,7 +1,7 @@
 # node-red-contrib-voicevox-core
 
 [voicevox_core](https://github.com/VOICEVOX/voicevox_core)を利用したNode-REDのノードです。  
-文字列を受け取り、音声ファイルを出力します。  
+文字列を受け取り、日本語の音声ファイルを出力します。  
 
 ▼voicevox_coreはこちら  
 <https://github.com/VOICEVOX/voicevox_core>  
@@ -12,6 +12,11 @@
 > [!CAUTION]
 > **現状ではWindowsにしか対応していません。**  
 > また**Pythonの環境が必要**で、仮想環境にパッケージがインストールされます。  
+
+## ライセンス
+
+このソフトウェアは [MIT](./LICENSE) Licenseの下で提供されています。  
+VOICEVOX/voicevox_core - [MIT](https://github.com/VOICEVOX/voicevox_core/blob/main/LICENSE) License  
 
 ## 動作確認環境
 
